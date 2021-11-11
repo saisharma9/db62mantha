@@ -19,13 +19,12 @@ router.post('/shakes', shakes_controller.shakes_create_post);
 router.delete('/shakes/:id', shakes_controller.shakes_delete); 
  
 // PUT request to update shakes. 
-router.put('/shakes/:id', 
-shakes_controller.shakes_update_put); 
+router.put('/shakes/:id', shakes_controller.shakes_update_put); 
  
 // GET request for one shakes. 
 router.get('/shakes/:id', shakes_controller.shakes_detail); 
  
 // GET request for list of all shakes items. 
-router.get('/resource/shakes', shakes_controller.shakes_list); 
+router.get('/shakes', shakes_controller.shakes_list); 
  
 module.exports = router;

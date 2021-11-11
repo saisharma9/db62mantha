@@ -1,8 +1,27 @@
 var shakes = require('../models/shakes'); 
  
 // List of all shakes 
-exports.shakes_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: shakes list'); 
+exports.shakes_list = async function(req, res) { 
+    try{ 
+        theshakes = await shakes.find(); 
+        res.send(theshakes); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
+// VIEWS 
+// Handle a show all view 
+exports.shakes_view_all_Page = async function(req, res) { 
+    try{ 
+        theshakes = await shakes.find(); 
+        res.render('shakes', { title: 'Shakes Search Results', results: theshakes }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
 }; 
  
 // for a specific shakes. 
