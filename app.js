@@ -19,7 +19,7 @@ var resourceRouter = require('./routes/resource');
 
 // We can seed the collection if needed on server start
 async function recreateDB(){
-  // Delete everything await Costume.deleteMany();
+  // Delete everything await shakes.deleteMany();
   let instance1 = new shakes({flavour:"oreo shake", size:"16 oz small", cost:"4.20"});
   instance1.save( function(err,doc) {
   if(err) return console.error(err);

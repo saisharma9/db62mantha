@@ -36,7 +36,7 @@ exports.shakes_create_post = async function (req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"shakes_type":"goat", "cost":12, "size":"large"}
+    // {"flavour":"goat", "cost":12, "size":"large"}
     document.flavour = req.body.flavour; 
     document.size = req.body.size; 
     document.cost = req.body.cost;
@@ -56,6 +56,34 @@ exports.shakes_delete = function(req, res) {
 }; 
  
 // Handle shakes update form on PUT. 
-exports.shakes_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: shakes update PUT' + req.params.id); 
+exports.shakes_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await shakes.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.flavour)  
+               toUpdate.flavour = req.body.flavour; 
+        if(req.body.cost) toUpdate.cost = req.body.cost; 
+        if(req.body.size) toUpdate.size = req.body.size; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
+
+// for a specific shakes. 
+exports.shakes_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await shakes.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
