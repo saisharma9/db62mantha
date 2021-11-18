@@ -14,5 +14,8 @@ router.get('/', function(req, res, next) {
 /* GET detail shakes page */ 
 router.get('/detail', shakes_controlers.shakes_view_one_Page); 
 
+/* GET create shakes page */ 
+router.get('/create', shakes_controlers.shakes_create_Page); 
+
 module.exports = router;
 

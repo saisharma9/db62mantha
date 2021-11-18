@@ -28,28 +28,7 @@ exports.shakes_view_all_Page = async function(req, res) {
 exports.shakes_detail = function(req, res) { 
     res.send('NOT IMPLEMENTED: shakes detail: ' + req.params.id); 
 }; 
- 
-// Handle shakes create on POST. 
-exports.shakes_create_post = async function (req, res) {
-    console.log(req.body)
-    let document = new shakes();
-    // We are looking for a body, since POST does not have query parameters.
-    // Even though bodies can be in many different formats, we will be picky
-    // and require that it be a json object
-    // {"flavour":"goat", "cost":12, "size":"large"}
-    document.flavour = req.body.flavour; 
-    document.size = req.body.size; 
-    document.cost = req.body.cost;
-    try {
-        let result = await document.save();
-        res.send(result);
-    }
-    catch (err) {
-        res.status(500);
-        res.send(`{"error": ${err}}`);
-    }
-};
- 
+  
 // Handle shakes delete on DELETE. 
 exports.shakes_delete = async function(req, res) { 
     console.log("delete "  + req.params.id) 
@@ -109,3 +88,38 @@ exports.shakes_view_one_Page = async function(req, res) {
         res.send(`{'error': '${err}'}`); 
     } 
 }; 
+
+ // Handle building the view for creating a shakes. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.shakes_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('shakescreate', { title: 'shakes Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle shakes create on POST. 
+exports.shakes_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new shakes();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    
+    document.flavour = req.body.flavour; 
+    document.cost = req.body.cost; 
+    document.size = req.body.size;
+    try {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
