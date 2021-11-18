@@ -11,3 +11,18 @@ a {
   background-color: aquamarine; 
   width: 120px; 
 } 
+
+.shakes{
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight:normal;
+
+}
+.style{
+  color:lemonchiffon;
+  background-color:black;
+  color: gold 
+}

@@ -17,5 +17,11 @@ router.get('/detail', shakes_controlers.shakes_view_one_Page);
 /* GET create shakes page */ 
 router.get('/create', shakes_controlers.shakes_create_Page); 
 
+/* GET create update page */ 
+router.get('/update', shakes_controlers.shakes_update_Page); 
+
+/* GET create shakes page */ 
+router.get('/delete', shakes_controlers.shakes_delete_Page); 
+
 module.exports = router;
 

@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let shakesid = toShow._id 
+    - let flavour = toShow.flavour 
+    - let cost = toShow.cost 
+    - let size = toShow.size 
+    - let actionid = "/resource/shakes/" + shakesid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='shakesAttr mr-3') shakes ID is: 
+        div #{shakesid} 
+      div.row 
+        div(class='shakesAttr mr-3') shakes Type is: 
+        div #{flavour} 
+      div.row 
+        div(class='shakesAttr mr-3') shakes Cost is: 
+        div #{cost} 
+      div.row 
+        div(class='shakesAttr mr-3') shakes Size is: 
+        div #{size} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the shakes collection 
+      window.location.href='/shakes' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/shakes' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
+ 
