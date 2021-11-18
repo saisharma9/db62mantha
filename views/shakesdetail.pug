@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let shakesid = toShow._id 
+  - let flavour = toShow.flavour 
+  - let size = toShow.size
+  - let cost = toShow.cost
+  div 
+    div.row 
+      div(class='shakesAttr mr-3') shakes ID is: 
+      div #{shakesid} 
+    div.row 
+      div(class='shakesAttr mr-3') shakes Flavour is: 
+      div #{flavour} 
+    div.row 
+      div(class='shakesAttr mr-3') shakes cost is: 
+      div #{cost} 
+    div.row 
+      div(class='shakesAttr mr-3') shakes size is: 
+      div #{size} 

@@ -11,5 +11,8 @@ router.get('/', function(req, res, next) {
   res.render('shakes', { title: 'Search Results shakes' });
 });
 
+/* GET detail shakes page */ 
+router.get('/detail', shakes_controlers.shakes_view_one_Page); 
+
 module.exports = router;
 
