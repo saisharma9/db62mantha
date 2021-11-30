@@ -1,16 +1,12 @@
-
-
-extends layout
-
-block content
-  h1= title
-  p I love playing BasketBall.
-  button(type="button", class="btn btn-secondary" onclick="update()") Press Me for the contents
-  div(id="target") Display
-  
-  script. 
-    let client_count = 0;
-    function update() {
-      client_count = client_count + 1;
-      document.getElementById("target").innerHTML = `Value now ${client_count}`;
-    }
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/shakes") Take me to shakes
+    br 
+    a(href="/logout") Logout 
